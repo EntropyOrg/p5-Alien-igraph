@@ -30,7 +30,7 @@ share {
 	build [
 		'%{configure}',
 		'%{make}',
-		'%{make} check',
+		( '%{make} check' ) x!!( $^O ne 'darwin' ),
 		'%{make} install',
 	];
 };
