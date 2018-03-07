@@ -1,0 +1,36 @@
+use alienfile;
+
+plugin 'PkgConfig' => (
+	pkg_name => 'igraph',
+);
+
+share {
+	my $version_re = qr/igraph-([\w\.]+)\.tar\.gz/;
+	plugin Download => (
+		url => 'http://igraph.org/c/',
+		version => $version_re,
+		prefer => sub {
+			my $res_list = [
+				grep {
+					$_->{url} =~ $version_re;
+				} map {
+					# modifying
+					$_->{url} =~ s/\n//g;
+					$_;
+				}
+				@{ $_[1]->{list} }
+			];
+
+			return +{ list => $res_list, type => 'list' };
+		}
+	);
+
+	plugin Extract => 'tar.gz';
+	plugin 'Build::Autoconf';
+	build [
+		'%{configure}',
+		'%{make}',
+		'%{make} check',
+		'%{make} install',
+	];
+};

@@ -1,0 +1,10 @@
+native:
+  debian:
+    packages:
+      - libxml2-dev
+  macos-homebrew:
+    packages:
+      - libxml2
+  msys2-mingw64:
+    packages:
+      - mingw-w64-x86_64-libxml2

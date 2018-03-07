@@ -1,0 +1,38 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Alien::igraph - Alien package for the igraph network analysis library
+
+=head1 VERSION
+
+version 0.001
+
+=head1 Inline support
+
+This module supports L<Inline's with functionality|Inline/"Playing 'with' Others">.
+
+=head1 IGRAPH LICENSE
+
+C<igraph> is licensed under the GNU General Public License version 2.
+
+=head1 SEE ALSO
+
+L<igraph|http://igraph.org/>
+
+L<Repository information|http://project-renard.github.io/doc/development/repo/p5-Alien-igraph/>
+
+=head1 AUTHOR
+
+Zakariyya Mughal <zmughal@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2018 by Zakariyya Mughal.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
