@@ -4,8 +4,6 @@ use strict;
 use warnings;
 
 use parent qw(Alien::Base);
-use File::Spec;
-
 
 sub inline_auto_include {
 	return  [ 'igraph.h' ];
