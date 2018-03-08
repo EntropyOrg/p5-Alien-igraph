@@ -1,5 +1,7 @@
 use alienfile;
 
+requires 'Path::Tiny' => 0;
+
 plugin 'PkgConfig' => (
 	pkg_name => 'igraph',
 );
@@ -26,6 +28,19 @@ share {
 	);
 
 	plugin Extract => 'tar.gz';
+
+
+	patch sub {
+		if( $^O eq 'MSWin32' ) {
+			my ($s_paus) = Path::Tiny->new('src/f2c/s_paus.c');
+
+			$s_paus->edit_lines(sub {
+				s{\Qpause();\E}{}g;
+			});
+		}
+	};
+
+
 	plugin 'Build::Autoconf';
 
 	my $extra_configure = '';
