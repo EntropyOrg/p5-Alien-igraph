@@ -27,10 +27,23 @@ share {
 
 	plugin Extract => 'tar.gz';
 	plugin 'Build::Autoconf';
+
+	my $extra_configure = '';
+
+	# Need to add -DUSE_CLOCK to CFLAGS because MSWin32 MinGW does not have
+	# `#include <sys/times.h>`.
+	$extra_configure .= " CFLAGS='-DUSE_CLOCK'" if $^O eq 'MSWin32';
+
 	build [
-		'%{configure}',
+		"%{configure}$extra_configure",
 		'%{make}',
-		( '%{make} check' ) x!!( $^O ne 'darwin' ),
+
+		# Skip `make check` on MSWin32.
+		# MSWin32 requires a patch to change `$at_diff` in
+		# `tests/testsuite` to `diff -u --strip-trailing-cr` because the
+		# programs output a CR which needs to be ignored.
+		( '%{make} check' ) x!!( $^O ne 'darwin' && $^O ne 'MSWin32' ),
+
 		'%{make} install',
 	];
 };
