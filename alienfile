@@ -9,7 +9,7 @@ plugin 'PkgConfig' => (
 share {
 	my $version_re = qr/igraph-([\w\.]+)\.tar\.gz/;
 	plugin Download => (
-		url => 'http://igraph.org/c/',
+		url => 'https://igraph.org/c/',
 		version => $version_re,
 		prefer => sub {
 			my $res_list = [
