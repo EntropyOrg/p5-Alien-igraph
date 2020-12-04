@@ -52,4 +52,4 @@ C<igraph> is licensed under the GNU General Public License version 2.
 
 L<igraph|http://igraph.org/>
 
-L<Repository information|http://project-renard.github.io/doc/development/repo/p5-Alien-igraph/>
+
